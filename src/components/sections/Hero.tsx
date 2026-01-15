@@ -88,8 +88,8 @@ export default function Hero() {
               </MagneticButton>
               <MagneticButton strength={0.2}>
                 <a
-                  href="/assets/Thomson_Simbolon_CV.pdf"
-                  download="Thomson_Simbolon_CV.pdf"
+                  href="/assets/Thomson's-CV.pdf"
+                  download="Thomson's-CV.pdf"
                   className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-text-main border border-dark-border rounded-lg hover:border-primary/50 hover:bg-dark-card transition-all duration-300"
                 >
                   <svg

@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Container from "@/components/ui/Container";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Blog", href: "#blog" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -79,13 +81,19 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* CTA Button */}
-          <a
-            href="#contact"
-            className="hidden lg:inline-flex items-center px-4 py-2 text-sm font-medium text-text-main bg-gradient-primary rounded-lg shadow-glow-sm hover:shadow-glow-lg transition-all duration-300"
-          >
-            Let&apos;s Talk
-          </a>
+          {/* Right Side Actions */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
+            {/* CTA Button */}
+            <a
+              href="#contact"
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-text-main bg-gradient-primary rounded-lg shadow-glow-sm hover:shadow-glow-lg transition-all duration-300"
+            >
+              Let&apos;s Talk
+            </a>
+          </div>
 
           {/* Mobile Menu Button */}
           <button

@@ -5,12 +5,32 @@
 @tailwind utilities;
 
 @layer base {
+  /* Dark theme (default) */
+  :root,
+  .dark {
+    --bg-primary: #0b0422;
+    --bg-card: #150d2e;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-main: #FFFFFF;
+    --text-muted: #b9b6c6;
+  }
+
+  /* Light theme */
+  .light {
+    --bg-primary: #f8f7ff;
+    --bg-card: #ffffff;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --text-main: #1a1a2e;
+    --text-muted: #64648c;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     @apply bg-dark-bg text-text-main font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {

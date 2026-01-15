@@ -32,7 +32,7 @@ export default function About() {
           <FadeIn delay={100}>
             <div className="relative">
               <Avatar 
-                src="/assets/profile.png" 
+                src="/assets/Hero-Profile.png" 
                 alt="Thomson Simbolon" 
                 size="xl" 
               />

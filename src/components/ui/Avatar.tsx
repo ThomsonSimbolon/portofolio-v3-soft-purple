@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 interface AvatarProps {
   src?: string;
   alt?: string;
@@ -49,10 +51,13 @@ export default function Avatar({
       {/* Avatar Image */}
       <div className={`relative ${sizeClasses[size]} rounded-full overflow-hidden border-2 border-dark-card`}>
         {src ? (
-          <img
+          <Image
             src={src}
             alt={alt}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 128px, 160px"
+            priority
           />
         ) : (
           // Default avatar placeholder

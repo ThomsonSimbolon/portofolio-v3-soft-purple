@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
         dark: {
-          bg: '#0b0422',
-          card: '#150d2e',
-          border: 'rgba(255, 255, 255, 0.1)',
+          bg: 'var(--bg-primary)',
+          card: 'var(--bg-card)',
+          border: 'var(--border-color)',
         },
         primary: {
           DEFAULT: '#8247FF',
@@ -15,8 +16,8 @@ module.exports = {
           light: '#A78BFA',
         },
         text: {
-          main: '#FFFFFF',
-          muted: '#b9b6c6',
+          main: 'var(--text-main)',
+          muted: 'var(--text-muted)',
           accent: '#C4B5FD',
         }
       },
@@ -44,3 +45,4 @@ module.exports = {
   },
   plugins: [],
 }
+

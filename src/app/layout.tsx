@@ -7,7 +7,9 @@ import NoiseTexture from "@/components/ui/NoiseTexture";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CursorSpotlight from "@/components/ui/CursorSpotlight";
 import Navbar from "@/components/Navbar";
-
+import Providers from "@/components/Providers";
+import JsonLd from "@/components/JsonLd";
+import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
   title: "Thomson Simbolon | Senior Frontend Engineer",
@@ -47,24 +49,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
+      <head>
+        <JsonLd />
+      </head>
       <body className="min-h-screen overflow-x-hidden">
-        {/* Scroll Progress Indicator */}
-        <ScrollProgress />
-        
-        {/* Navigation */}
-        <Navbar />
-        
-        {/* Animated Background Effects */}
-        <CursorSpotlight />
-        <FloatingParticles />
-        <GradientOrbs />
-        <GridPattern />
-        <NoiseTexture />
-        
-        {/* Main Content */}
-        <div className="relative z-10">{children}</div>
+        <Providers>
+          {/* Scroll Progress Indicator */}
+          <ScrollProgress />
+          
+          {/* Navigation */}
+          <Navbar />
+          
+          {/* Animated Background Effects */}
+          <CursorSpotlight />
+          <FloatingParticles />
+          <GradientOrbs />
+          <GridPattern />
+          <NoiseTexture />
+          
+          {/* Main Content */}
+          <div className="relative z-10">
+            <PageTransition>{children}</PageTransition>
+          </div>
+        </Providers>
       </body>
     </html>
   );
 }
+
