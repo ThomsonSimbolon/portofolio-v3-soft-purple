@@ -55,7 +55,7 @@ export default function Avatar({
             src={src}
             alt={alt}
             fill
-            className="object-cover"
+            className="object-cover object-top"
             sizes="(max-width: 768px) 128px, 160px"
             priority
           />
