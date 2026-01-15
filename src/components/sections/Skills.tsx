@@ -1,7 +1,10 @@
+"use client";
+
 import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Badge from "@/components/ui/Badge";
 import Card from "@/components/ui/Card";
+import FadeIn from "@/components/ui/FadeIn";
 
 interface SkillCategory {
   name: string;
@@ -68,27 +71,31 @@ export default function Skills() {
   return (
     <section id="skills" className="section-padding relative bg-dark-card/30">
       <Container>
-        <SectionHeader
-          accent="Skills & Expertise"
-          title="Technologies I Work With"
-          subtitle="A curated set of modern tools and technologies I use to build exceptional digital products."
-        />
+        <FadeIn>
+          <SectionHeader
+            accent="Skills & Expertise"
+            title="Technologies I Work With"
+            subtitle="A curated set of modern tools and technologies I use to build exceptional digital products."
+          />
+        </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="p-8" hover>
-              <h3 className="text-xl font-semibold text-text-main mb-2">
-                {category.name}
-              </h3>
-              <p className="text-text-muted text-sm mb-6">
-                {category.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <Badge key={skillIndex}>{skill}</Badge>
-                ))}
-              </div>
-            </Card>
+            <FadeIn key={index} delay={100 + index * 100}>
+              <Card className="p-8 h-full" hover>
+                <h3 className="text-xl font-semibold text-text-main mb-2">
+                  {category.name}
+                </h3>
+                <p className="text-text-muted text-sm mb-6">
+                  {category.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <Badge key={skillIndex}>{skill}</Badge>
+                  ))}
+                </div>
+              </Card>
+            </FadeIn>
           ))}
         </div>
       </Container>
