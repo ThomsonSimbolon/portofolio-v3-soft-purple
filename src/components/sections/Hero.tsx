@@ -8,8 +8,9 @@ import MagneticButton from "@/components/ui/MagneticButton";
 
 export default function Hero() {
   const roles = [
-    "Senior Frontend Engineer",
+    "Fullstack Developer",
     "React Specialist",
+    "Next Enthusiast",
     "UI/UX Developer",
     "TypeScript Expert",
   ];
