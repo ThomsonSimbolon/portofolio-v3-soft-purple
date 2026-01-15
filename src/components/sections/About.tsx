@@ -5,6 +5,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
 import Counter from "@/components/ui/Counter";
 import FadeIn from "@/components/ui/FadeIn";
+import Avatar from "@/components/ui/Avatar";
 
 export default function About() {
   const highlights = [
@@ -25,9 +26,39 @@ export default function About() {
           />
         </FadeIn>
 
+        {/* Avatar + Intro Row */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 mb-12">
+          {/* Avatar with Animated Ring */}
+          <FadeIn delay={100}>
+            <div className="relative">
+              <Avatar 
+                src="/assets/profile.png" 
+                alt="Thomson Simbolon" 
+                size="xl" 
+              />
+              {/* Status Badge */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-dark-card border border-dark-border shadow-lg">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                <span className="text-xs text-text-muted whitespace-nowrap">Available for hire</span>
+              </div>
+            </div>
+          </FadeIn>
+
+          {/* Quick Intro */}
+          <FadeIn delay={200} className="text-center lg:text-left max-w-xl">
+            <h3 className="text-2xl md:text-3xl font-bold text-text-main mb-4">
+              Hello! I&apos;m <span className="text-primary">Thomson Simbolon</span>
+            </h3>
+            <p className="text-text-muted leading-relaxed text-lg">
+              A passionate <span className="text-primary-light font-medium">Fullstack Developer</span> based in Indonesia, 
+              crafting beautiful and functional web experiences with modern technologies.
+            </p>
+          </FadeIn>
+        </div>
+
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           {/* Main Content Card */}
-          <FadeIn delay={100} className="lg:col-span-3">
+          <FadeIn delay={300} className="lg:col-span-3">
             <Card className="p-8 md:p-10 h-full">
               <div className="space-y-6">
                 <p className="text-text-muted leading-relaxed text-lg">
@@ -53,7 +84,7 @@ export default function About() {
           {/* Stats Grid */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-4">
             {highlights.map((item, index) => (
-              <FadeIn key={index} delay={200 + index * 100}>
+              <FadeIn key={index} delay={400 + index * 100}>
                 <Card className="p-6 text-center" hover>
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
                     <Counter end={item.value} suffix={item.suffix} duration={2000} />

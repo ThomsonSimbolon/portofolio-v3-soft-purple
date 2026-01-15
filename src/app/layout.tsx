@@ -5,7 +5,9 @@ import GradientOrbs from "@/components/ui/GradientOrbs";
 import GridPattern from "@/components/ui/GridPattern";
 import NoiseTexture from "@/components/ui/NoiseTexture";
 import ScrollProgress from "@/components/ui/ScrollProgress";
+import CursorSpotlight from "@/components/ui/CursorSpotlight";
 import Navbar from "@/components/Navbar";
+
 
 export const metadata: Metadata = {
   title: "Thomson Simbolon | Senior Frontend Engineer",
@@ -54,6 +56,7 @@ export default function RootLayout({
         <Navbar />
         
         {/* Animated Background Effects */}
+        <CursorSpotlight />
         <FloatingParticles />
         <GradientOrbs />
         <GridPattern />

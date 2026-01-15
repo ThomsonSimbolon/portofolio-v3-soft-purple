@@ -1,7 +1,10 @@
+"use client";
+
+import { useState, FormEvent } from "react";
 import Container from "@/components/ui/Container";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
-import Button from "@/components/ui/Button";
+import FadeIn from "@/components/ui/FadeIn";
 
 const contactLinks = [
   {
@@ -46,7 +49,98 @@ const contactLinks = [
   },
 ];
 
+interface FormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 export default function Contact() {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email";
+    }
+
+    if (!formData.subject.trim()) {
+      newErrors.subject = "Subject is required";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Message must be at least 10 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      // Using Formspree for form handling (replace with your Formspree ID)
+      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when user starts typing
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
   return (
     <section id="contact" className="section-padding relative">
       {/* Background Glow */}
@@ -56,65 +150,220 @@ export default function Contact() {
       />
 
       <Container className="relative z-10">
-        <SectionHeader
-          accent="Get in Touch"
-          title="Let&apos;s Work Together"
-          subtitle="I'm currently open to new opportunities. Whether you have a project in mind or just want to chat, feel free to reach out."
-        />
+        <FadeIn>
+          <SectionHeader
+            accent="Get in Touch"
+            title="Let&apos;s Work Together"
+            subtitle="I'm currently open to new opportunities. Whether you have a project in mind or just want to chat, feel free to reach out."
+          />
+        </FadeIn>
 
-        <div className="max-w-3xl mx-auto">
-          <Card className="p-8 md:p-12 text-center">
-            <p className="text-xl text-text-muted mb-8 leading-relaxed">
-              I&apos;m always interested in hearing about new projects and opportunities.
-              If you&apos;re looking for a dedicated frontend engineer who cares about
-              quality and user experience, let&apos;s connect.
-            </p>
+        <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Contact Form */}
+          <FadeIn delay={100}>
+            <Card className="p-8">
+              <h3 className="text-xl font-semibold text-text-main mb-6">
+                Send me a message
+              </h3>
 
-            {/* Primary CTA */}
-            <Button
-              href="mailto:hello@thomsonsimbolon.dev"
-              size="lg"
-              className="mb-12"
-            >
-              Send Me an Email
-            </Button>
+              {submitStatus === "success" && (
+                <div className="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Message sent successfully! I&apos;ll get back to you soon.
+                  </div>
+                </div>
+              )}
 
-            {/* Divider */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="flex-1 h-px bg-dark-border" />
-              <span className="text-text-muted text-sm">or connect with me on</span>
-              <div className="flex-1 h-px bg-dark-border" />
-            </div>
+              {submitStatus === "error" && (
+                <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Oops! Something went wrong. Please try again or email me directly.
+                  </div>
+                </div>
+              )}
 
-            {/* Social Links */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              {contactLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 p-4 rounded-xl bg-dark-bg border border-dark-border hover:border-primary/50 hover:shadow-glow-sm transition-all duration-300 group"
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Name Field */}
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-text-muted mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
+                      errors.name ? "border-red-500" : "border-dark-border"
+                    } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
+                    placeholder="John Doe"
+                  />
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-400">{errors.name}</p>
+                  )}
+                </div>
+
+                {/* Email Field */}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-text-muted mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
+                      errors.email ? "border-red-500" : "border-dark-border"
+                    } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
+                    placeholder="john@example.com"
+                  />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                  )}
+                </div>
+
+                {/* Subject Field */}
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-text-muted mb-2">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
+                      errors.subject ? "border-red-500" : "border-dark-border"
+                    } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors`}
+                    placeholder="Project Inquiry"
+                  />
+                  {errors.subject && (
+                    <p className="mt-1 text-sm text-red-400">{errors.subject}</p>
+                  )}
+                </div>
+
+                {/* Message Field */}
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-text-muted mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
+                    className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
+                      errors.message ? "border-red-500" : "border-dark-border"
+                    } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none`}
+                    placeholder="Tell me about your project..."
+                  />
+                  {errors.message && (
+                    <p className="mt-1 text-sm text-red-400">{errors.message}</p>
+                  )}
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-3 px-6 rounded-lg bg-gradient-primary text-text-main font-medium shadow-glow-sm hover:shadow-glow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                  <span className="text-text-muted group-hover:text-primary transition-colors">
-                    {link.icon}
-                  </span>
-                  <span className="text-text-main font-medium">{link.name}</span>
-                </a>
-              ))}
-            </div>
-          </Card>
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                      Send Message
+                    </>
+                  )}
+                </button>
+              </form>
+            </Card>
+          </FadeIn>
 
-          {/* Footer */}
-          <footer className="mt-16 text-center">
-            <p className="text-text-muted text-sm">
-              © {new Date().getFullYear()} Thomson Simbolon. Built with{" "}
-              <span className="text-primary-light">Next.js</span> &{" "}
-              <span className="text-primary-light">TailwindCSS</span>
-            </p>
-          </footer>
+          {/* Contact Info */}
+          <FadeIn delay={200}>
+            <div className="space-y-6">
+              <Card className="p-8">
+                <h3 className="text-xl font-semibold text-text-main mb-4">
+                  Other ways to connect
+                </h3>
+                <p className="text-text-muted mb-6 leading-relaxed">
+                  I&apos;m always interested in hearing about new projects and opportunities.
+                  If you&apos;re looking for a dedicated developer who cares about
+                  quality and user experience, let&apos;s connect.
+                </p>
+
+                {/* Social Links */}
+                <div className="space-y-3">
+                  {contactLinks.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 rounded-xl bg-dark-bg border border-dark-border hover:border-primary/50 hover:shadow-glow-sm transition-all duration-300 group"
+                    >
+                      <span className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        {link.icon}
+                      </span>
+                      <div>
+                        <div className="text-text-main font-medium">{link.name}</div>
+                        <div className="text-sm text-text-muted">{link.value}</div>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </Card>
+
+              {/* Location Card */}
+              <Card className="p-6">
+                <div className="flex items-center gap-4">
+                  <span className="p-3 rounded-lg bg-primary/10">
+                    <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </span>
+                  <div>
+                    <div className="text-text-main font-medium">Based in</div>
+                    <div className="text-text-muted">Indonesia 🇮🇩</div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </FadeIn>
         </div>
+
+        {/* Footer */}
+        <footer className="mt-16 text-center">
+          <p className="text-text-muted text-sm">
+            © {new Date().getFullYear()} Thomson Simbolon. Built with{" "}
+            <span className="text-primary-light">Next.js</span> &{" "}
+            <span className="text-primary-light">TailwindCSS</span>
+          </p>
+        </footer>
       </Container>
     </section>
   );
 }
+
