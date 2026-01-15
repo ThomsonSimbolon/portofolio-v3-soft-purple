@@ -39,10 +39,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         isScrolled
-          ? "py-4 bg-dark-bg/80 backdrop-blur-lg border-b border-dark-border"
-          : "py-6 bg-transparent"
+          ? "py-4 bg-dark-bg/80 backdrop-blur-lg border-dark-border"
+          : "py-6 bg-transparent border-transparent"
       }`}
     >
       <Container>
