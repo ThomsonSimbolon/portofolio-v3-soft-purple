@@ -2,8 +2,8 @@ export default function JsonLd() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
-    name: "Thomson Simbolon",
-    jobTitle: "Senior Frontend Engineer",
+    name: "Thomson",
+    jobTitle: "Fullstack Developer",
     description:
       "Fullstack Developer specializing in React, Next.js, and TypeScript. Building high-performance web applications with modern technologies.",
     url: "https://thomsonsimbolon.dev",
@@ -30,13 +30,13 @@ export default function JsonLd() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Thomson Simbolon Portfolio",
+    name: "Thomson Portfolio",
     url: "https://thomsonsimbolon.dev",
     description:
-      "Personal portfolio of Thomson Simbolon - Senior Frontend Engineer specializing in React, Next.js, and TypeScript.",
+      "Personal portfolio of Thomson - Fullstack Developer specializing in React, Next.js, and TypeScript.",
     author: {
       "@type": "Person",
-      name: "Thomson Simbolon",
+      name: "Thomson",
     },
   };
 

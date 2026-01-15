@@ -1,4 +1,4 @@
-# Thomson Simbolon | Senior Frontend Engineer Portfolio
+# Thomson | Full Stack Developer Portfolio
 
 A premium, high-performance personal portfolio website built with **Next.js 14**, **TypeScript**, and **Framer Motion**.  
 Designed to showcase advanced UI/UX capabilities through modern animations, interactive elements, and a polished dark-themed aesthetic.
@@ -109,4 +109,4 @@ src/
 
 ## 📄 License
 
-[MIT](LICENSE) © 2024 Thomson Simbolon
+[MIT](LICENSE) © 2024 Thomson

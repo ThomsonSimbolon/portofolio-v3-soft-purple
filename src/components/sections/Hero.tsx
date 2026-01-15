@@ -90,7 +90,7 @@ export default function Hero() {
                 <a
                   href="/assets/Thomson's-CV.pdf"
                   download="Thomson's-CV.pdf"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-text-main border border-dark-border rounded-lg hover:border-primary/50 hover:bg-dark-card transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-8 py-4 text-lg font-medium text-text-main border border-dark-border rounded-lg hover:border-primary/50 hover:bg-dark-card transition-all duration-300"
                 >
                   <svg
                     className="w-5 h-5"

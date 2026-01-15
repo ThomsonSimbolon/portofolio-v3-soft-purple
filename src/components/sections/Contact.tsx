@@ -357,7 +357,7 @@ export default function Contact() {
         {/* Footer */}
         <footer className="mt-16 text-center">
           <p className="text-text-muted text-sm">
-            © {new Date().getFullYear()} Thomson Simbolon. Built with{" "}
+            © {new Date().getFullYear()} Thomson. Built with{" "}
             <span className="text-primary-light">Next.js</span> &{" "}
             <span className="text-primary-light">TailwindCSS</span>
           </p>

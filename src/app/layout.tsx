@@ -12,7 +12,7 @@ import JsonLd from "@/components/JsonLd";
 import PageTransition from "@/components/ui/PageTransition";
 
 export const metadata: Metadata = {
-  title: "Thomson Simbolon | Senior Frontend Engineer",
+  title: "Thomson | Full Stack Developer",
   description:
     "Senior Frontend Engineer specializing in React, Next.js, and TypeScript. Building high-performance web applications with modern technologies.",
   keywords: [
@@ -23,19 +23,19 @@ export const metadata: Metadata = {
     "Web Development",
     "UI Engineer",
   ],
-  authors: [{ name: "Thomson Simbolon" }],
+  authors: [{ name: "Thomson" }],
   openGraph: {
-    title: "Thomson Simbolon | Senior Frontend Engineer",
+    title: "Thomson | Full Stack Developer",
     description:
-      "Senior Frontend Engineer specializing in React, Next.js, and TypeScript. Building high-performance web applications with modern technologies.",
+      "Fullstack Developer specializing in React, Next.js, and TypeScript. Building high-performance web applications with modern technologies.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Thomson Simbolon | Senior Frontend Engineer",
+    title: "Thomson | Full Stack Developer",
     description:
-      "Senior Frontend Engineer specializing in React, Next.js, and TypeScript.",
+      "Fullstack Developer specializing in React, Next.js, and TypeScript.",
   },
   robots: {
     index: true,

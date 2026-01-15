@@ -33,7 +33,7 @@ export default function About() {
             <div className="relative">
               <Avatar 
                 src="/assets/Hero-Profile.png" 
-                alt="Thomson Simbolon" 
+                alt="Thomson" 
                 size="xl" 
               />
               {/* Status Badge */}
@@ -47,7 +47,7 @@ export default function About() {
           {/* Quick Intro */}
           <FadeIn delay={200} className="text-center lg:text-left max-w-xl">
             <h3 className="text-2xl md:text-3xl font-bold text-text-main mb-4">
-              Hello! I&apos;m <span className="text-primary">Thomson Simbolon</span>
+              Hello! I&apos;m <span className="text-primary">Thomson</span>
             </h3>
             <p className="text-text-muted leading-relaxed text-lg">
               A passionate <span className="text-primary-light font-medium">Fullstack Developer</span> based in Indonesia, 
