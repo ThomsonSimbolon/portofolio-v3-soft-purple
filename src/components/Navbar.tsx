@@ -56,7 +56,7 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden lg:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
@@ -82,14 +82,14 @@ export default function Navbar() {
           {/* CTA Button */}
           <a
             href="#contact"
-            className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-text-main bg-gradient-primary rounded-lg shadow-glow-sm hover:shadow-glow-lg transition-all duration-300"
+            className="hidden lg:inline-flex items-center px-4 py-2 text-sm font-medium text-text-main bg-gradient-primary rounded-lg shadow-glow-sm hover:shadow-glow-lg transition-all duration-300"
           >
             Let&apos;s Talk
           </a>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-text-muted hover:text-text-main transition-colors"
+            className="lg:hidden p-2 text-text-muted hover:text-text-main transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -120,17 +120,17 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isMobileMenuOpen ? "max-h-64 mt-4" : "max-h-0"
+          className={`lg:hidden overflow-hidden transition-all duration-300 ${
+            isMobileMenuOpen ? "max-h-96 mt-4" : "max-h-0"
           }`}
         >
-          <ul className="flex flex-col gap-4 py-4 border-t border-dark-border">
+          <ul className="flex flex-col items-center gap-6 py-6 border-t border-dark-border">
             {navLinks.map((link) => (
-              <li key={link.name}>
+              <li key={link.name} className="w-full text-center">
                 <a
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`block text-sm font-medium transition-colors ${
+                  className={`block text-base font-medium transition-colors ${
                     activeSection === link.href.slice(1)
                       ? "text-primary"
                       : "text-text-muted hover:text-text-main"
@@ -144,7 +144,7 @@ export default function Navbar() {
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-text-main bg-gradient-primary rounded-lg"
+                className="inline-flex items-center px-6 py-2.5 text-base font-medium text-text-main bg-gradient-primary rounded-lg"
               >
                 Let&apos;s Talk
               </a>
