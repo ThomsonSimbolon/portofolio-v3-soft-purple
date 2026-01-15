@@ -3,7 +3,7 @@
 A premium, high-performance personal portfolio website built with **Next.js 14**, **TypeScript**, and **Framer Motion**.  
 Designed to showcase advanced UI/UX capabilities through modern animations, interactive elements, and a polished dark-themed aesthetic.
 
-![Portfolio Preview](https://github.com/ThomsonSimbolon/portofolio-v3-soft-purple/assets/preview.png)
+![Portfolio Preview](public/assets/hero-preview.png)
 
 ## 🚀 Tech Stack
 
