@@ -6,6 +6,9 @@ import GridPattern from "@/components/ui/GridPattern";
 import NoiseTexture from "@/components/ui/NoiseTexture";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CursorSpotlight from "@/components/ui/CursorSpotlight";
+import PageLoader from "@/components/ui/PageLoader";
+import BackToTop from "@/components/ui/BackToTop";
+import CustomCursor from "@/components/ui/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Providers from "@/components/Providers";
 import JsonLd from "@/components/JsonLd";
@@ -55,6 +58,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen overflow-x-hidden">
         <Providers>
+          {/* Page Loader */}
+          <PageLoader />
+          
           {/* Scroll Progress Indicator */}
           <ScrollProgress />
           
@@ -72,6 +78,12 @@ export default function RootLayout({
           <div className="relative z-10">
             <PageTransition>{children}</PageTransition>
           </div>
+          
+          {/* Back to Top Button */}
+          <BackToTop />
+          
+          {/* Custom Cursor */}
+          <CustomCursor />
         </Providers>
       </body>
     </html>
