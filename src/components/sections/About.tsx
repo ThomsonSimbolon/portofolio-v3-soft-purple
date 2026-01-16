@@ -82,10 +82,10 @@ export default function About() {
           </FadeIn>
 
           {/* Stats Grid */}
-          <div className="lg:col-span-2 grid grid-cols-2 gap-4">
+          <div className="lg:col-span-2 grid grid-cols-2 gap-4 items-stretch">
             {highlights.map((item, index) => (
-              <FadeIn key={index} delay={400 + index * 100}>
-                <Card className="p-6 text-center" hover>
+              <FadeIn key={index} delay={400 + index * 100} className="h-full">
+                <Card className="p-6 text-center h-full flex flex-col justify-center" hover>
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
                     <Counter end={item.value} suffix={item.suffix} duration={2000} />
                   </div>
