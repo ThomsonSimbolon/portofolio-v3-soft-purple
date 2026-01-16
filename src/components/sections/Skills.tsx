@@ -88,7 +88,7 @@ export default function Skills() {
             const IconComponent = category.icon;
             return (
               <FadeIn key={index} delay={100 + index * 100}>
-                <Card className="p-8 h-full" hover>
+                <Card className="p-8 h-full" hover gradientBorder glow>
                   {/* Category Header */}
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center">

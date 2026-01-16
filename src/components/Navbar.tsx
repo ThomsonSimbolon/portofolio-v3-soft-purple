@@ -58,27 +58,39 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a
-                  href={link.href}
-                  className={`relative text-sm font-medium transition-colors duration-300 ${
-                    activeSection === link.href.slice(1)
-                      ? "text-primary"
-                      : "text-text-muted hover:text-text-main"
-                  }`}
-                >
-                  {link.name}
-                  {/* Active indicator */}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                      activeSection === link.href.slice(1) ? "w-full" : "w-0"
+          <ul className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.slice(1);
+              return (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-text-muted hover:text-text-main hover:bg-dark-card/50"
                     }`}
-                  />
-                </a>
-              </li>
-            ))}
+                  >
+                    {/* Active background pill */}
+                    <span
+                      className={`absolute inset-0 rounded-lg transition-all duration-300 ${
+                        isActive
+                          ? "bg-primary/10 scale-100 opacity-100"
+                          : "bg-transparent scale-95 opacity-0"
+                      }`}
+                    />
+                    {/* Text content */}
+                    <span className="relative z-10">{link.name}</span>
+                    {/* Active underline indicator */}
+                    <span
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-primary rounded-full transition-all duration-300 ${
+                        isActive ? "w-6 opacity-100" : "w-0 opacity-0"
+                      }`}
+                    />
+                  </a>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Right Side Actions */}

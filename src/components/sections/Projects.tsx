@@ -25,7 +25,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <FadeIn key={project.slug} delay={100 + index * 100}>
               <Link href={`/projects/${project.slug}`} className="block">
-                <Card className="p-0 overflow-hidden group" hover glow>
+                <Card className="p-0 overflow-hidden group" hover glow gradientBorder>
                   {/* Project Image */}
                   <ProjectImage title={project.title} index={index} />
 
