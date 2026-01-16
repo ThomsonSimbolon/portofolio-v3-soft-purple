@@ -110,8 +110,8 @@ export default function Contact() {
     setSubmitStatus("idle");
 
     try {
-      // Using Formspree for form handling (replace with your Formspree ID)
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      // Using Nodemailer via API route
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
