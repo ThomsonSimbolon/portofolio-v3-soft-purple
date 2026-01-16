@@ -42,35 +42,35 @@ export default function FadeIn({
     return () => observer.disconnect();
   }, [threshold]);
 
-  const directionStyles = {
-    up: "translate-y-8",
-    down: "-translate-y-8",
-    left: "translate-x-8",
-    right: "-translate-x-8",
+  // Pre-calculate transform values for GPU-accelerated animations
+  const getInitialTransform = () => {
+    switch (direction) {
+      case "up":
+        return "translateY(2rem)";
+      case "down":
+        return "translateY(-2rem)";
+      case "left":
+        return "translateX(2rem)";
+      case "right":
+        return "translateX(-2rem)";
+      default:
+        return "translateY(2rem)";
+    }
   };
 
   return (
     <div
       ref={ref}
-      className={`transition-all ${className}`}
+      className={className}
       style={{
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
         opacity: isVisible ? 1 : 0,
-        transform: isVisible ? "translate(0, 0)" : undefined,
+        transform: isVisible ? "translate3d(0, 0, 0)" : getInitialTransform(),
+        transition: `opacity ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms, transform ${duration}ms cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms`,
+        willChange: isVisible ? "auto" : "transform, opacity",
       }}
-      {...(!isVisible && {
-        style: {
-          transitionDuration: `${duration}ms`,
-          transitionDelay: `${delay}ms`,
-          opacity: 0,
-          transform: directionStyles[direction].includes("translate-y")
-            ? `translateY(${direction === "up" ? "2rem" : "-2rem"})`
-            : `translateX(${direction === "left" ? "2rem" : "-2rem"})`,
-        },
-      })}
     >
       {children}
     </div>
   );
 }
+
