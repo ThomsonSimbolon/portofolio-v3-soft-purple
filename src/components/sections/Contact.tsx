@@ -254,22 +254,43 @@ export default function Contact() {
 
                 {/* Message Field */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-text-muted mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
-                      errors.message ? "border-red-500" : "border-dark-border"
-                    } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none`}
-                    placeholder="Tell me about your project..."
-                  />
+                  <div className="flex justify-between items-center mb-2">
+                    <label htmlFor="message" className="block text-sm font-medium text-text-muted">
+                      Message
+                    </label>
+                    <span className={`text-xs transition-colors ${
+                      formData.message.length > 500 
+                        ? "text-orange-400" 
+                        : formData.message.length > 0 
+                          ? "text-primary" 
+                          : "text-text-muted/50"
+                    }`}>
+                      {formData.message.length}/500
+                    </span>
+                  </div>
+                  <div className="relative">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      maxLength={500}
+                      className={`w-full px-4 py-3 rounded-lg bg-dark-bg border ${
+                        errors.message ? "border-red-500" : "border-dark-border"
+                      } text-text-main placeholder-text-muted/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_20px_-5px_rgba(130,71,255,0.3)] transition-all duration-300 resize-none`}
+                      placeholder="Tell me about your project..."
+                    />
+                    {/* Focus glow indicator */}
+                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-primary scale-x-0 group-focus-within:scale-x-100 transition-transform origin-left" />
+                  </div>
                   {errors.message && (
-                    <p className="mt-1 text-sm text-red-400">{errors.message}</p>
+                    <p className="mt-1 text-sm text-red-400 flex items-center gap-1">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {errors.message}
+                    </p>
                   )}
                 </div>
 
