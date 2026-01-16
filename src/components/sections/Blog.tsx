@@ -18,7 +18,7 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
-    title: "Building Scalable React Applications with Clean Architecture",
+    title: "Building Scalable React & Next Applications with Clean Architecture",
     excerpt:
       "Learn how to structure your React projects for maintainability and scalability using clean architecture principles and best practices.",
     date: "Jan 10, 2026",

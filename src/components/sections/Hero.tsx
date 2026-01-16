@@ -64,14 +64,18 @@ export default function Hero() {
           {/* Subtitle */}
           <FadeIn delay={400}>
             <p className="text-lg md:text-xl text-text-muted max-w-2xl mx-auto mb-10 leading-relaxed">
-              I craft high-performance web applications with modern technologies.
-              Specializing in{" "}
+              Fullstack Developer specializing in building scalable web applications,
+              from modern front-end interfaces to robust back-end systems. Experienced with{" "}
               <span className="text-primary-light">React</span>,{" "}
-              <span className="text-primary-light">Next.js</span>, and{" "}
-              <span className="text-primary-light">TypeScript</span> to deliver
-              exceptional user experiences.
+              <span className="text-primary-light">Next.js</span>,{" "}
+              <span className="text-primary-light">NodeJS</span>,{" "}
+              <span className="text-primary-light">PHP</span>,{" "}
+              <span className="text-primary-light">Python</span>, and{" "}
+              <span className="text-primary-light">RESTful APIs</span>, delivering
+              high-performance, production-ready solutions.
             </p>
           </FadeIn>
+
 
           {/* CTA Buttons with Magnetic Effect */}
           <FadeIn delay={600}>

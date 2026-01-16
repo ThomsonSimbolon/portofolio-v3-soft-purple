@@ -9,7 +9,7 @@ import FadeIn from "@/components/ui/FadeIn";
 const contactLinks = [
   {
     name: "Email",
-    value: "hello@thomsonsimbolon.dev",
+    value: "simbolonthomson10@gmail.com",
     href: "mailto:hello@thomsonsimbolon.dev",
     icon: (
       <svg

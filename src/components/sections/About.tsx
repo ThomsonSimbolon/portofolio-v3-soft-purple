@@ -9,9 +9,9 @@ import Avatar from "@/components/ui/Avatar";
 
 export default function About() {
   const highlights = [
-    { value: 5, suffix: "+", label: "Years Experience" },
-    { value: 50, suffix: "+", label: "Projects Delivered" },
-    { value: 20, suffix: "+", label: "Happy Clients" },
+    { value: 2, suffix: "+", label: "Years Experience" },
+    { value: 25, suffix: "+", label: "Projects Delivered" },
+    { value: 10, suffix: "+", label: "Happy Clients" },
     { value: 99, suffix: "%", label: "Client Satisfaction" },
   ];
 
@@ -62,20 +62,29 @@ export default function About() {
             <Card className="p-8 md:p-10 h-full">
               <div className="space-y-6">
                 <p className="text-text-muted leading-relaxed text-lg">
-                  I&apos;m a <span className="text-text-main font-medium">Senior Frontend Engineer</span> with 
-                  over 5 years of experience building modern web applications. My journey started with 
-                  vanilla JavaScript and has evolved into mastering the React ecosystem.
+                  I&apos;m a <span className="text-text-main font-medium">Fullstack Developer</span> with
+                  hands-on experience building modern, scalable web applications for real-world use.
+                  My work spans both frontend and backend development, delivering complete
+                  end-to-end solutions.
                 </p>
+
                 <p className="text-text-muted leading-relaxed">
-                  I specialize in creating <span className="text-primary-light">component-driven architectures</span>, 
-                  implementing <span className="text-primary-light">state management solutions</span>, and optimizing 
-                  applications for peak performance. I believe in writing clean, maintainable code that 
-                  stands the test of time.
+                  I have strong experience working with{" "}
+                  <span className="text-primary-light">React</span>,{" "}
+                  <span className="text-primary-light">Next.js</span>,{" "}
+                  <span className="text-primary-light">NodeJS</span>,{" "}
+                  <span className="text-primary-light">PHP</span>, and{" "}
+                  <span className="text-primary-light">Python</span>, building systems such as
+                  Learning Management Systems, AI-powered applications, and integrated service platforms.
+                  I frequently work with REST APIs, databases, and modern UI frameworks to ensure
+                  performance, scalability, and clean architecture.
                 </p>
+
                 <p className="text-text-muted leading-relaxed">
-                  When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing to 
-                  open-source projects, or sharing knowledge through technical articles and mentoring 
-                  junior developers.
+                  I value clean, maintainable code and enjoy solving complex problems through
+                  thoughtful system design. I&apos;m highly adaptable, comfortable working in teams,
+                  and continuously improving my skills by exploring new technologies and
+                  applying them to practical projects.
                 </p>
               </div>
             </Card>
